@@ -2,7 +2,7 @@
 
 ## How does it Work?
 You'll get a unique endpoint that shall return the paginated version of data, which we retrieve from the API that you submit to us. Note that this works only for those APIs that return JSON data.  
----
+
 The following constraints apply to the data returned by the paginated API-
 
 - If no query was passed in the URL, all of the data shall be returned.
