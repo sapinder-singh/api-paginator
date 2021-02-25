@@ -1,0 +1,40 @@
+body {
+  min-height: 100vh;
+  --bg-dark: #131313;
+	background-color: var(--bg-dark);
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+body::-webkit-scrollbar,
+.card::-webkit-scrollbar {
+  display: none;
+}
+
+body,
+.card {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+  scroll-behavior: smooth;
+}
+
+.card {
+  width: 600px;
+	min-width: 50vw;
+	height: calc(100vh - 5rem);
+	overflow-y: scroll;
+	box-shadow: inset 0 -1px 10px var(--bg-dark);
+}
+
+.mark,
+.form-control {
+  background-color: var(--bg-dark) !important;
+}
+
+ul {
+	list-style: circle;
+}
+.badge {
+	background: var(--bg-dark);
+}

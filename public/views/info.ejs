@@ -1,0 +1,37 @@
+<div class="text-start mt-5 text-white-50 lh-lg">
+	<h2 class="fs-4 mb-4 text-white">How does it work?</h2>
+	<p>
+		You'll get a unique endpoint that shall return the paginated version of data, which we retrieve from the API that
+		you
+		submit to us. Note that this works only for those APIs that return JSON data.
+	</p>
+
+	<p>The following constraints apply to the data returned by the paginated API-</p>
+	
+	<ul class="ps-3 lh-lg">
+		<li>If no query was passed in the URL, all of the data shall be returned.</li>
+		<li>The 2 valid queries are:</li>
+		<ol>
+			<li>
+				<strong class="badge font-monospace">page</strong> :
+				<wbr>The page/set number of the resulting data.
+					</li>
+			<li>
+				<strong class="badge font-monospace">limit</strong> :
+				<wbr>The number of results per page/set.
+					</li>
+			<em class="fw-bold">OR</em>
+			<li class="list-unstyled">
+				<strong class="badge font-monospace">number_of_pages</strong> :
+				<wbr>The total number of pages/sets in the resulting data.
+					</li>
+		</ol>
+		
+		<li>Only positive integer values are allowed for each of the queries. If not, the queries shall be rejected.</li>
+		<li>In case <strong class="badge font-monospace">limit</strong> and <strong class="badge font-monospace">number_of_pages</strong>
+			both are defined, the former shall be used for paginating the data.</li>
+		<li>In case of any logical error in the queries, all of the data shall be returned to the client.
+			An Error message shall be logged to the console for detailed information.
+		</li>
+	</ul>
+</div>
