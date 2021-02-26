@@ -15,7 +15,7 @@ connection.on('connected', _=> console.log('mongodb connected'));
 const apiSchema = new mongoose.Schema({
 	endpoint: { type: String, required: true },
 	shortid: { type: String, required: true },
-	data: { type: Array, required: true } // type: JSON ?
+	data: { type: Array, required: true }
 })
 
 const API = connection.model('APIs', apiSchema);

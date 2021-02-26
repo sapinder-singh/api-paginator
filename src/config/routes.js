@@ -36,12 +36,14 @@ router.post('/', FetchURL, (req, res) => {
 			
 			RenderMessageToClient(res, {success: {
 				successCode: 200,
+				// send the paginated url
 				paginatedUrl: `${process.env.Protocol}://${req.get('host')}/${api.shortid}`
 			}});
 		});
 })
 
-/* Paginated APIs endpoint */
+
+/* Paginated APIs Endpoint */
 router.get('/:shortid', async (req, res) => {
 	const requestedAPI = await API.findOne({shortid: req.params.shortid});
 
@@ -51,9 +53,10 @@ router.get('/:shortid', async (req, res) => {
 
 	const data = requestedAPI.data;
 	let pageNumber, dataLimit;
-	const validation = ValidateQueries(req, res, data);
 
+	const validation = ValidateQueries(req, res, data);
 	if(!validation) return;
+	
 	else {
 		pageNumber = validation.pageNumber;
 		dataLimit = validation.dataLimit;

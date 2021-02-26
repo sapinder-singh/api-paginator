@@ -1,4 +1,6 @@
 function ValidateQueries(req, res, data) {
+
+	// this function will be used in case the queries ain't validated
 	const sendAllData = (statusCode) => {
 		res.status(statusCode).json(data);
 	}
@@ -12,6 +14,7 @@ function ValidateQueries(req, res, data) {
 	}
 	
 	if(!dataLimit) {
+		// either `datalimit` or `numberOfPages` is required to paginate the data
 		const numberOfPages = parseInt(Math.abs(req.query.number_of_pages));
 
 		if(!numberOfPages) {
