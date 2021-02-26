@@ -1,4 +1,6 @@
 const fetch = require('node-fetch');
+require('dotenv').config();
+
 const API = require('../config/database').API;
 const RenderMessageToClient = require('../utilities/render_message');
 
@@ -8,7 +10,7 @@ async function FetchURL(req, res, next) {
 	if(requestedAPI) {
 		return RenderMessageToClient(res, {success: {
 			successCode: 200,
-			paginatedUrl: `${req.protocol}://${req.get('host')}/api/${requestedAPI.shortid}`
+			paginatedUrl: `${process.env.Protocol}://${req.get('host')}/${requestedAPI.shortid}`
 		}});
 	}
 

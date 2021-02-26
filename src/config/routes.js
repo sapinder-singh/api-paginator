@@ -5,6 +5,8 @@ const FetchURL = require('../middlewares/fetch_url');
 const RenderMessageToClient = require('../utilities/render_message');
 const ValidateQueries = require('../utilities/validate_queries');
 
+require('dotenv').config();
+
 router.get('/', (req, res) => {
 	res.render('index', {error: false, success: false})
 })
@@ -34,13 +36,13 @@ router.post('/', FetchURL, (req, res) => {
 			
 			RenderMessageToClient(res, {success: {
 				successCode: 200,
-				paginatedUrl: `${req.protocol}://${req.get('host')}/api/${api.shortid}`
+				paginatedUrl: `${process.env.Protocol}://${req.get('host')}/${api.shortid}`
 			}});
 		});
 })
 
 /* Paginated APIs endpoint */
-router.get('/api/:shortid', async (req, res) => {
+router.get('/:shortid', async (req, res) => {
 	const requestedAPI = await API.findOne({shortid: req.params.shortid});
 
 	if(!requestedAPI) {
