@@ -8,11 +8,15 @@
     "dev": "nodemon server.js"
   },
   "keywords": [
-		"pagination", "api", "paginate api", "api paginator"
-	],
+    "pagination",
+    "api",
+    "paginate api",
+    "api paginator"
+  ],
   "author": "Sapinder Singh",
   "license": "MIT",
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
