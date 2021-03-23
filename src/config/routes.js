@@ -1,5 +1,7 @@
 const router = require('express').Router();
 const shortid = require('shortid');
+const cors = require('cors');
+
 const API = require('./database').API;
 const FetchURL = require('../middlewares/fetch_url');
 const RenderMessageToClient = require('../utilities/render_message');
@@ -45,7 +47,7 @@ router.post('/', FetchURL, (req, res) => {
 
 
 /* Paginated APIs Endpoint */
-router.get('/:shortid', async (req, res) => {
+router.get('/:shortid', cors(), async (req, res) => {
 	const requestedAPI = await API.findOne({ shortid: req.params.shortid });
 
 	if (!requestedAPI) {

@@ -1,5 +1,5 @@
-<div class="text-start mt-5 text-white-50 lh-lg">
-	<h2 class="fs-4 mb-4 text-white">How does it work?</h2>
+<div class="info text-start mt-5 lh-lg">
+	<h2 class="fs-4 mb-4">How does it work?</h2>
 	<p>
 		You'll get a unique endpoint that shall return the paginated version of data, which we retrieve from the API that
 		you
@@ -7,7 +7,7 @@
 	</p>
 
 	<p>The following constraints apply to the data returned by the paginated API-</p>
-	
+
 	<ul class="ps-3 lh-lg">
 		<li>If no query was passed in the URL, all of the data shall be returned.</li>
 		<li>The only valid queries are:</li>
@@ -26,9 +26,10 @@
 				<wbr>The total number of pages/sets in the resulting data.
 					</li>
 		</ol>
-		
+
 		<li>Only positive integer values are allowed for each of the queries. If not, the queries shall be rejected.</li>
-		<li>In case <strong class="badge font-monospace">limit</strong> and <strong class="badge font-monospace">number_of_pages</strong>
+		<li>In case <strong class="badge font-monospace">limit</strong> and <strong
+				class="badge font-monospace">number_of_pages</strong>
 			both are defined, the former shall be used for paginating the data.</li>
 		<li>In case of any logical error in the queries, all of the data shall be returned to the client.
 			An Error message shall be logged to the console for detailed information.
