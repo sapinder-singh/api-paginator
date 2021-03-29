@@ -19,40 +19,38 @@ async function FetchURL(req, res, next) {
 		});
 	}
 
-	else {
-		fetch(req.body.endpoint)
-			.then(response => {
-				if (response.ok)
-					return response.json();
+	fetch(req.body.endpoint)
+		.then(response => {
+			if (response.ok)
+				return response.json();
 
-				// else render error message on the client machine
-				RenderMessageToClient(res, {
-					error: {
-						errorCode: response.status,
-						errorText: 'Bad response from the API endpoint'
-					}
-				});
-
-				return undefined;
-			})
-
-			.then(data => {
-				if (data) {
-					// this data will be stored in the database with a shortid to create a new endpoint
-					req.data = data;
-					next();
+			// else render error message on the client machine
+			RenderMessageToClient(res, {
+				error: {
+					errorCode: response.status,
+					errorText: 'Bad response from the API endpoint'
 				}
-			})
-
-			.catch(err => {
-				RenderMessageToClient(res, {
-					error: {
-						errorCode: 500,
-						errorText: err.message
-					}
-				});
 			});
-	}
+
+			return undefined;
+		})
+
+		.then(data => {
+			if (data) {
+				// this data will be stored in the database with a shortid to create a new endpoint
+				req.data = data;
+				next();
+			}
+		})
+
+		.catch(err => {
+			RenderMessageToClient(res, {
+				error: {
+					errorCode: 500,
+					errorText: err.message
+				}
+			});
+		});
 }
 
 module.exports = FetchURL;

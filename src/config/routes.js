@@ -14,6 +14,7 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', FetchURL, (req, res) => {
+	if (!req.data) return;
 
 	const newAPI = new API({
 		endpoint: req.body.endpoint,

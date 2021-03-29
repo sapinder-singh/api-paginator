@@ -1,20 +1,21 @@
 <form class="w-100 text-start mb-5" action="/" method="POST">
-	
+
 	<% if (error) { %>
 	<p class="mb-4 p-2 text-center lead mark rounded text-danger">
 		Error <%- error.errorCode %>! <wbr><%- error.errorText %>.
 					</p>
 	<% } %>
-	
+
+	<!-- Render Paginated Link -->
 	<% if (success) { %>
-		<p class="mb-4 p-2 text-center lead mark rounded text-success">
-			<a class="nav-link" href="<%- success.paginatedUrl %>"><%- success.paginatedUrl %></a>
-		</p>
+	<p class="mb-4 p-2 text-center lead mark rounded text-success">
+		<a class="nav-link" href="<%- success.paginatedUrl %>"><%- success.paginatedUrl %></a>
+	</p>
 	<% } %>
-	
+
 	<label for="endpoint" class="form-label mb-4">Enter an API endpoint:</label>
-	<input type="url" class="form-control mb-4 text-white-50 border-primary" 
-		id="endpoint" name="endpoint" required tabindex="0">
+	<input type="url" id="endpoint" class="form-control mb-4 text-white-50 border-primary" name="endpoint" required
+		autocomplete="on" tabindex="0">
 
 	<button class="btn btn-primary text-nowrap px-5" type="submit">Paginate It</button>
 </form>

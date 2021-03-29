@@ -12,6 +12,6 @@ The following constraints apply to the data returned by the paginated API-
 	***OR***  
 	`number_of_pages` : The total number of pages/sets in the resulting data.
 - Only positive integer values are allowed for each of the queries. If not, the queries shall be rejected.
-- In case `limit` and `number_of_pages` both are defined, the former shall be used for paginating the data.
-- In case of any logical error in the queries, all of the data shall be returned to the client.  
+- In case `limit` and `number_of_pages` both are defined, `limit` shall be used for paginating the data.
+- In case of any logical error in the queries passed, all of the data shall be returned to the client.  
 An Error message shall be logged to the console for detailed information.
