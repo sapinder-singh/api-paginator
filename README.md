@@ -1,7 +1,7 @@
 # Paginate The API
 
 ## How does it Work?
-You'll get a unique endpoint that shall return the paginated version of data, which we retrieve from the API that you submit to us. **Note that this works only for those APIs that return JSON data.**  
+You'll get a unique endpoint that shall return the paginated version of data, which is retrieved from the API endpoint that you submit. **Note that this works only for those APIs that return JSON data.**  
 
 The following constraints apply to the data returned by the paginated API-
 
