@@ -1,8 +1,10 @@
 <div class="info text-start mt-5 lh-lg">
 	<h2 class="fs-4 mb-4">How does it work?</h2>
 	<p>
-		You'll get a unique endpoint that shall return the paginated version of data, which is retrieved from the API
-		endpoint that you submitted. Note that this works only for those APIs that return JSON data.
+		This API acts as a <strong><i>caching server</i></strong> that caches the data fetched from the
+		<strong><i>origin server</i></strong>. You're just needed to submit an API endpoint
+		<strong>that retuns JSON data</strong>, for which this API provides a unique endpoint with the
+		<em>paginated version</em> of the same JSON data.
 	</p>
 
 	<p>The following constraints apply to the data returned by the paginated API-</p>
@@ -30,8 +32,8 @@
 		<li>In case <strong class="badge font-monospace">limit</strong> and <strong
 				class="badge font-monospace">number_of_pages</strong>
 			both are defined, <strong class="badge font-monospace">limit</strong> will be used for paginating the data.</li>
-		<li>In case of any logical error in the queries passed, all of the data shall be returned to the client.
-			An Error message shall be logged to the console for detailed information.
+		<li>In case of any logical error in the queries passed, all of the data shall be returned to the client. An
+			Error message shall be logged to the console for detailed information.
 		</li>
 	</ul>
 </div>

@@ -1,9 +1,9 @@
-# Paginate The API
+# API Paginator
 
 ## How does it Work?
-You'll get a unique endpoint that shall return the paginated version of data, which is retrieved from the API endpoint that you submit. **Note that this works only for those APIs that return JSON data.**  
+This API acts as a ***caching server*** that caches the data fetched from the ***origin server***. You're just needed to submit an API endpoint **that returns JSON data**, for which this API provides a unique endpoint with the *paginated version* of the same JSON data.
 
-The following constraints apply to the data returned by the paginated API-
+The following constraints apply to the data returned by this API-
 
 - If no query was passed in the URL, all of the data shall be returned.
 - The only valid queries are:
@@ -13,5 +13,4 @@ The following constraints apply to the data returned by the paginated API-
 	`number_of_pages` : The total number of pages/sets in the resulting data.
 - Only positive integer values are allowed for each of the queries. If not, the queries shall be rejected.
 - In case `limit` and `number_of_pages` both are defined, `limit` shall be used for paginating the data.
-- In case of any logical error in the queries passed, all of the data shall be returned to the client.  
-An Error message shall be logged to the console for detailed information.
+- In case of any logical error in the queries passed, all of the data shall be returned to the client. An Error message shall be logged to the console for more information.
