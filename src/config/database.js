@@ -1,16 +1,14 @@
 const mongoose = require('mongoose');
 
-require('dotenv').config();
-
-const dbURL = `mongodb+srv://${process.env.AdminName}:${process.env.AdminPassword}@cluster0.exbea.mongodb.net/
-	${process.env.DataBase}?retryWrites=true&w=majority`;
+const dbURL = process.env.NODE_ENV === 'development' ?
+	process.env.dev_db : process.env.prod_db;
 
 const connection = mongoose.createConnection(dbURL, {
 	useNewUrlParser: true,
 	useUnifiedTopology: true
 });
 
-connection.on('connected', _=> console.log('mongodb connected'));
+connection.on('connected', _ => console.log('mongodb connected'));
 
 const apiSchema = new mongoose.Schema({
 	endpoint: { type: String, required: true },

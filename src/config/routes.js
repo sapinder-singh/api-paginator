@@ -7,8 +7,6 @@ const FetchURL = require('../middlewares/fetch_url');
 const RenderMessageToClient = require('../utilities/render_message');
 const ValidateQueries = require('../utilities/validate_queries');
 
-require('dotenv').config();
-
 router.get('/', (req, res) => {
 	res.render('index', { error: false, success: false })
 })
@@ -40,7 +38,7 @@ router.post('/', FetchURL, (req, res) => {
 				success: {
 					successCode: 200,
 					// send the paginated url
-					paginatedUrl: `${process.env.Protocol}://${req.get('host')}/${api.shortid}`
+					paginatedUrl: `${req.protocol}://${req.get('host')}/${api.shortid}`
 				}
 			});
 		});
@@ -56,16 +54,12 @@ router.get('/:shortid', cors(), async (req, res) => {
 	}
 
 	const data = requestedAPI.data;
-	let pageNumber, dataLimit;
 
 	const validation = ValidateQueries(req, res, data);
 	if (!validation) return;
 
-	else {
-		pageNumber = validation.pageNumber;
-		dataLimit = validation.dataLimit;
-	}
-
+	const pageNumber = validation.pageNumber;
+	const dataLimit = validation.dataLimit;
 
 	const startIndex = dataLimit * (pageNumber - 1);
 	let lastIndex = startIndex + dataLimit; // no need to deduct 1 because .slice() is exclusive for lastIndex

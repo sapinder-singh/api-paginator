@@ -14,7 +14,7 @@ async function FetchURL(req, res, next) {
 			success: {
 				successCode: 200,
 				// send paginated endpoint by attaching `requestedAPI.shortid`
-				paginatedUrl: `${process.env.Protocol}://${req.get('host')}/${requestedAPI.shortid}`
+				paginatedUrl: `${req.protocol}://${req.get('host')}/${requestedAPI.shortid}`
 			}
 		});
 	}
