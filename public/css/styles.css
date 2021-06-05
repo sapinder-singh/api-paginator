@@ -32,7 +32,8 @@ body,
 }
 
 .mark,
-.form-control {
+.form-control,
+pre {
   background-color: var(--bg-dark) !important;
 }
 
