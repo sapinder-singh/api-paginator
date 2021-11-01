@@ -1,11 +1,11 @@
-function RenderMessageToClient(responseObj, {error, success}) {
-	if(error) {
-		return responseObj.status(error.errorCode)
-			.render('index', { error, success: false });
-	}
-
-	responseObj.status(success.successCode)
-		.render('index', { success, error: false });
+function RenderMessageToClient(res, { error, success }) {
+  if (error) {
+    res.status(error.errorCode).render('index', { error, success: false });
+    return;
+  }
+  if (success) {
+    res.status(success.successCode).render('index', { success, error: false });
+  }
 }
 
 module.exports = RenderMessageToClient;

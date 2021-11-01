@@ -1,20 +1,33 @@
-const express = require('express');
-const app = express();
-const path = require('path');
-const router = require('./src/config/routes');
+const mongoose = require('mongoose');
+const app = require('./src/app');
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.resolve('./public')));
+require('dotenv').config();
 
-require('./src/config/database');
+process.on('uncaughtException', err => {
+  console.warn('UNHANDLED EXCEPTION... Shutting down!');
+  console.error(err);
+  process.exit(1);
+});
 
-app.set('view engine', 'ejs');
-app.set('views', path.resolve('./public/views'));
+const dbURL =
+  process.env.NODE_ENV === 'development'
+    ? process.env.dev_db
+    : process.env.prod_db;
 
-app.use(router);
+mongoose
+  .connect(dbURL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log('mongodb connected'));
 
-const port = process.env.PORT || 8000;
-app.listen(port,
-	() => console.log('server listening on port ' + port)
+const port = 8000;
+const server = app.listen(port, () =>
+  console.log('server listening on port ' + port)
 );
+
+process.on('unhandledRejection', err => {
+  console.warn('UNHANDLED REJECTION... Shutting Down!');
+  console.error(err);
+  server.close(() => process.exit(1));
+});
