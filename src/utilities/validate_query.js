@@ -1,4 +1,4 @@
-function ValidateQuery(query, data) {
+module.exports = function ValidateQuery(query, data) {
   const setErrorObj = (status, message) => ({
     errorOccurred: true,
     status,
@@ -26,7 +26,7 @@ function ValidateQuery(query, data) {
       );
     }
 
-    dataLimit = parseInt(data.length / numberOfPages);
+    dataLimit = data.length / numberOfPages;
   }
 
   const queryConflicts = () => {
@@ -42,6 +42,4 @@ function ValidateQuery(query, data) {
   }
 
   return { pageNumber, dataLimit };
-}
-
-module.exports = ValidateQuery;
+};
