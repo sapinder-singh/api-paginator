@@ -21,7 +21,7 @@ mongoose
   })
   .then(() => console.log('mongodb connected'));
 
-const port = 8000;
+const port = process.env.PORT | 8000;
 const server = app.listen(port, () =>
   console.log('server listening on port ' + port)
 );
