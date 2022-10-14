@@ -1,5 +1,7 @@
+const shortid = require('shortid');
 const Origin = require('../models/originModel');
 const ValidateQuery = require('../utilities/validate_query');
+const RenderMessageToClient = require('../utilities/render_message');
 
 module.exports.getData = async (req, res) => {
   const requestedOrigin = await Origin.findOne({
@@ -45,3 +47,34 @@ function paginateData(data, pageNumber, dataLimit) {
 
   return data.slice(startIndex, lastIndex);
 }
+
+module.exports.submitOrigin = (req, res) => {
+  if (!req.body.data) return;
+
+  const newOrigin = new Origin({
+    endpoint: req.body.endpoint,
+    shortid: shortid.generate(),
+    data: req.body.data,
+  });
+
+  newOrigin
+    .save()
+    .then(origin => {
+      RenderMessageToClient(res, {
+        success: {
+          successCode: 200,
+          paginatedUrl: `${req.protocol}://${req.get('host')}/api/origins/${
+            origin.shortid
+          }`,
+        },
+      });
+    })
+    .catch(() => {
+      RenderMessageToClient(res, {
+        error: {
+          errorCode: 400,
+          errorText: 'Error Saving the API',
+        },
+      });
+    });
+};
