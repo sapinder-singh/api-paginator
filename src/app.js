@@ -1,7 +1,6 @@
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
-const appController = require('./controllers/appController');
 const apiController = require('./controllers/apiController');
 const FetchURL = require('./middlewares/fetch_url');
 
@@ -15,14 +14,16 @@ app.set('view engine', 'ejs');
 app.set('views', path.resolve('./public/views'));
 
 app
-  .get('/', appController.getApp)
-  .post('/', FetchURL, appController.submitOrigin);
+  .get('/', (_req, res) => {
+    res.render('index', { error: false, success: false });
+  })
+  .post('/', FetchURL, apiController.submitOrigin);
 
 const corsMiddleware = (_req, _res, next) => {
   cors();
   next();
 };
 
-app.get('/:shortid', corsMiddleware, apiController.getData);
+app.get('/api/origins/:shortid', corsMiddleware, apiController.getData);
 
 module.exports = app;
