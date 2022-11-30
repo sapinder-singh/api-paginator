@@ -11,7 +11,7 @@ const FetchURL = async (req, res, next) => {
       success: {
         successCode: 200,
         // send paginated endpoint by attaching `requestedAPI.shortid`
-        paginatedUrl: `${req.protocol}://${req.get('host')}/${
+        paginatedUrl: `${req.protocol}://${req.get('host')}/api/origins/${
           requestedAPI.shortid
         }`,
       },
