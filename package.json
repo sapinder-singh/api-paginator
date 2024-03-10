@@ -4,8 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js NODE_ENV=production",
-    "dev": "nodemon",
+    "prod": "node server.js NODE_ENV=production",
+    "start": "NODE_ENV=development nodemon",
     "eslint": "npx eslint"
   },
   "keywords": [
