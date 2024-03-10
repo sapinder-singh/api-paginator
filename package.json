@@ -4,8 +4,9 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "prod": "node server.js NODE_ENV=production",
+    "serve": "node server.js NODE_ENV=production",
     "start": "NODE_ENV=development nodemon",
+    "postbuild": "chmod +x bin/postbuild.sh && ./bin/postbuild.sh",
     "eslint": "npx eslint"
   },
   "keywords": [

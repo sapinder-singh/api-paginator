@@ -3,3 +3,4 @@
 *.rest
 npm-debug.log*
 dist
+.amplify-hosting
