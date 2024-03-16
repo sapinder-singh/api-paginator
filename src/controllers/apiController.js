@@ -1,9 +1,9 @@
-const shortid = require('shortid');
-const Origin = require('../models/originModel');
-const ValidateQuery = require('../utilities/validate_query');
-const RenderMessageToClient = require('../utilities/render_message');
+import shortid from 'shortid';
+import Origin from '../models/originModel.js';
+import ValidateQuery from '../utilities/validate_query.js';
+import RenderMessageToClient from '../utilities/render_message.js';
 
-module.exports.getData = async (req, res) => {
+export async function getData(req, res) {
   const requestedOrigin = await Origin.findOne({
     shortid: req.params.shortid,
   });
@@ -23,10 +23,10 @@ module.exports.getData = async (req, res) => {
   const paginatedData = paginateData(
     data,
     validation.pageNumber,
-    validation.dataLimit
+    validation.dataLimit,
   );
   sendResponse(res, 200, 'OK', paginatedData);
-};
+}
 
 function sendResponse(resObj, status, message, data) {
   resObj.status(status).json({
@@ -48,7 +48,7 @@ function paginateData(data, pageNumber, dataLimit) {
   return data.slice(startIndex, lastIndex);
 }
 
-module.exports.submitOrigin = (req, res) => {
+export function submitOrigin(req, res) {
   if (!req.body.data) return;
 
   const newOrigin = new Origin({
@@ -77,4 +77,4 @@ module.exports.submitOrigin = (req, res) => {
         },
       });
     });
-};
+}

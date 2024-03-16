@@ -1,7 +1,8 @@
-const mongoose = require('mongoose');
-const app = require('./src/app');
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+import app from './src/app.js';
 
-require('dotenv').config();
+dotenv.config();
 
 process.on('uncaughtException', err => {
   console.warn('UNHANDLED EXCEPTION... Shutting down!');
@@ -14,16 +15,11 @@ const dbURL =
     ? process.env.dev_db
     : process.env.prod_db;
 
-mongoose
-  .connect(dbURL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => console.log('mongodb connected'));
+mongoose.connect(dbURL).then(() => console.log('mongodb connected'));
 
 const port = process.env.PORT || 3000;
 const server = app.listen(port, () =>
-  console.log('server listening on port ' + port)
+  console.log('server listening on port ' + port),
 );
 
 process.on('unhandledRejection', err => {

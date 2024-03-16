@@ -1,4 +1,4 @@
-module.exports = function ValidateQuery(query, data) {
+export default function ValidateQuery(query, data) {
   const setErrorObj = (status, message) => ({
     errorOccurred: true,
     status,
@@ -11,7 +11,7 @@ module.exports = function ValidateQuery(query, data) {
   if (!pageNumber || pageNumber < 1) {
     return setErrorObj(
       400,
-      "Please provide 'page' parameter with a positive integer value"
+      "Please provide 'page' parameter with a positive integer value",
     );
   }
 
@@ -22,7 +22,7 @@ module.exports = function ValidateQuery(query, data) {
     if (!numberOfPages || numberOfPages < 1) {
       return setErrorObj(
         400,
-        "Please provide either 'limit' or 'number_of_pages' parameter with a positive integer value."
+        "Please provide either 'limit' or 'number_of_pages' parameter with a positive integer value.",
       );
     }
 
@@ -42,4 +42,4 @@ module.exports = function ValidateQuery(query, data) {
   }
 
   return { pageNumber, dataLimit };
-};
+}
