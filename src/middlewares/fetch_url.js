@@ -1,8 +1,8 @@
-const fetch = require('node-fetch');
-const Origin = require('../models/originModel');
-const RenderMessageToClient = require('../utilities/render_message');
+import fetch from 'node-fetch';
+import Origin from '../models/originModel.js';
+import RenderMessageToClient from '../utilities/render_message.js';
 
-const FetchURL = async (req, res, next) => {
+export default async function FetchURL(req, res, next) {
   // first check if the submitted api is already stored in the database
   const requestedAPI = await Origin.findOne({ endpoint: req.body.endpoint });
 
@@ -49,6 +49,4 @@ const FetchURL = async (req, res, next) => {
         },
       });
     });
-};
-
-module.exports = FetchURL;
+}

@@ -8,4 +8,4 @@ function RenderMessageToClient(res, { error, success }) {
   }
 }
 
-module.exports = RenderMessageToClient;
+export default RenderMessageToClient;

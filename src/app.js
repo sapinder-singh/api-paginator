@@ -1,8 +1,8 @@
-const express = require('express');
-const path = require('path');
-const cors = require('cors');
-const apiController = require('./controllers/apiController');
-const FetchURL = require('./middlewares/fetch_url');
+import express from 'express';
+import path from 'path';
+import cors from 'cors';
+import { submitOrigin, getData } from './controllers/apiController.js';
+import FetchURL from './middlewares/fetch_url.js';
 
 const app = express();
 
@@ -17,13 +17,13 @@ app
   .get('/', (_req, res) => {
     res.render('index', { error: false, success: false });
   })
-  .post('/', FetchURL, apiController.submitOrigin);
+  .post('/', FetchURL, submitOrigin);
 
 const corsMiddleware = (_req, _res, next) => {
   cors();
   next();
 };
 
-app.get('/api/origins/:shortid', corsMiddleware, apiController.getData);
+app.get('/api/origins/:shortid', corsMiddleware, getData);
 
-module.exports = app;
+export default app;
