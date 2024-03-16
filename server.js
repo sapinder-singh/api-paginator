@@ -15,12 +15,7 @@ const dbURL =
     ? process.env.dev_db
     : process.env.prod_db;
 
-mongoose
-  .connect(dbURL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => console.log('mongodb connected'));
+mongoose.connect(dbURL).then(() => console.log('mongodb connected'));
 
 const port = process.env.PORT || 3000;
 const server = app.listen(port, () =>
