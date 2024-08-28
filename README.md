@@ -15,7 +15,7 @@ The following constraints apply to the data returned by this API-
 - In case `limit` and `number_of_pages` both are defined, `limit` will be used for paginating the data.
 - If the parameters' values conflict with each other, all of the data shall be returned to the client.
 
-The JSON response will look like-   
+The JSON response will look something like below -   
 
 ```
 {
